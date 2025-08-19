@@ -50,9 +50,11 @@ export default {
         async fetchTasks() {
             try {
                 const tg_user = windows.Telegram.WebApp.initDataUnsafe?.user;
-                
+                const response = await fetch('https://literate-funicular-vpjr7qrjv4wf6975-8000.app.github.dev/api/tasks/${tg_user.id}');
+                const data = await response.json();
+                this.tasks = data.tasks;
             } catch (error) {
-                console.error('Error fetching tasks:', error);
+                console.text('Error fetching tasks:', error);
             }
         },
 
